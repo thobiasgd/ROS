@@ -15,3 +15,14 @@ echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 Da mesma maneira que o código anterior, precisamos inicializar os comandos do nosso workspace para não precisar ficar inicializando-o com source a todo momento, o arquivo que realiza esta função se encontra na pasta insall que acabamos de cirar com nosso build.
 ```
 echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
+```
+
+## Criando Pacores
+Pacotes servem para separar o código em blocos reusáveis. Por exemplo, um pacote que trata os dados de uma camera, um outro para controlar as rodas, e um outro para lidar com o tratamento de motion planning, etc...
+Para começar a criar um pacote (package), vá para a pasta srs do workspace, e em seguida use o comando de packages do ros2.
+Note: Primeiro argumento é a função "create", o segundo argumento se refere ao nome. A long option build-type se refere ao compilador, que pode ser ament_python, para python, e ament_cmake, para c++. podemos colocar dependências do projeto também com o --dependencies.
+```
+cd src
+ros2 pkg create my_py_pkg --build-type ament_python --dependencies rclpy
+
+
