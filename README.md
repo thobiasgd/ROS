@@ -24,5 +24,9 @@ Note: Primeiro argumento é a função "create", o segundo argumento se refere a
 ```
 cd src
 ros2 pkg create my_py_pkg --build-type ament_python --dependencies rclpy
-
+```
+Para finalizar, realize o build (afim de eficiência, recomenda-se buildar apenas os pacotes modificados usando `--packages-select pkgname`.
+```
+colcon build --packages-select my_py_pkg
+```
 
