@@ -12,7 +12,7 @@ Um script padrão em c++ de como construir um nó está no código abaixo. Deve-
 
 int main(int argc, char **argv){
     rclcpp::init(argc, argv); // Inicializa a comunicação com o ros2
-    auto node = std::make_shared<rclcpp::Node>(); // Basicamente em c++, todos os nós são criados como smart pointers
+    auto node = std::make_shared<rclcpp::Node>("cpp_test"); // Basicamente em c++, todos os nós são criados como smart pointers
     RCLCPP_INFO(node->get_logger(), "Hello World"); // Um macro onde: #1 método de info do nó x. 2# a mensagem
     rclcpp::shutdown(); // Finaliza a comunicação com o ros2
     return 0;
@@ -48,12 +48,18 @@ find_package(rclcpp REQUIRED)
 add_executable(cpp_node src/my_first_node.cpp) # adicionar o executável. #1 nome do executável #2 caminho do arquivo
 ament_target_dependencies(cpp_node rclcpp) # informa as dependências. #1 nome do executavel que foi criado na linha anterior #2 a dependência em si
 
-
 install(TARGET_SUPPORTS_SHARED_LIBS
   cpp_node
   DESTINATION lib/${PROJECT_NAME}
 )
 
 ament_package()
-
-``
+```
+Após este processo, deve-se voltar a pasta raíz do workspace, e compilar o projeto
+```bash
+colcon build --packages-select my_cpp_pkg
+```
+Por fim, para testar o nó, usaremos:
+```base
+ros2 run my_cpp_pkg cpp_node # ros2 run nome_do_pacote nome_do_executavel
+```
