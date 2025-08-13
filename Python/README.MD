@@ -18,6 +18,7 @@ def main(args = None):
     rclpy.init(args = args) # inicializa a comunicação com o ros
     node = Node("py_test") #1 - Nome do nó
     node.get_logger().info("Hello World") # printa algo no terminal
+    rclpy.spin(node) # Faz com que o nó, continue "rodando", até pressionar "ctrl c". #1 nome do nó
     rclpy.shutdown() # esta normalmente é a linha final do nó
 
 if __name__ == '__main__':
@@ -27,4 +28,15 @@ Garanta que o terminal se encontre no diretório do script do nó. Para iniciali
 ```
 chmod +x my_fist_node.py
 ./my_fist_node.py
+```
+### Instalando o arquivo
+Recomenda-se instalar o arquivo. fazendo o passo a seguir, o ros cria um executável para incializar o programa.
+Vá para o arquivo `setup.py` e adicione um novo argumento para o dicionario `entry_points` no índice 'console_scripts'.
+```python
+entry_points={
+    'console_scripts': [
+        "py_node = my_py_pkg.my_fist_node:main" # nome do executável = pasta_do_executavel.nome_do_executavel:nome_da_funcao
+    ],
+}
+```
 ```
