@@ -8,7 +8,7 @@ colcon build --packages-select my_py_pkg
 ```
 ## Criando um nó
 Para criar um nó, segue-se o seguinte padrão
-```
+```python
 import rclpy # biblioteca padrão do ros para o python
 from rclpy.node import Node
 
