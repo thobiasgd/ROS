@@ -39,4 +39,13 @@ entry_points={
     ],
 }
 ```
+Para adicionar mais execuáveis a este pacote, adicione mais nós à lista de 'console_scripts'
+### Executar o executável
+Volte na pasta raíz do workspace, compile, e isso criará um executável na pasta 'install'
+```bash
+colcon build
+```
+Agora, para executar o executável, chama a função `ros2 run`
+```bash
+ros2 run my_py_pkg py_node
 ```
