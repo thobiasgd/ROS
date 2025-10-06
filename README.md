@@ -4,7 +4,7 @@ na pasta de workspace serão instaldos todos os pacotes necessários de um proje
 ```
 mkdir -p ros2_ws/src
 ```
-Após isso, inicializaremos o build a fim de construir a estrutura de pastas
+Após isso, inicializaremos o build a fim de construir a estrutura de pastas (deve-se voltar para a pasta raíz do workspace)
 ```
 colcon build
 ```
