@@ -38,3 +38,9 @@ Também é possuivel enviar dados para um tópico específico passando como par�
 ```bash
 ros2 topic pub -r 5 /robot_news example_interfaces/msg/String "{data: 'Hello from terminal'}"
 ```
+
+## **Renomeando um Tópico**
+Assim como os nós,  também é possível renomear um tópico com os argumentos do ````--ros-args```:
+```bash
+ros2 run pkg_name executable_name --ros-args -r old_topic_name:=new_topic_name
+```
