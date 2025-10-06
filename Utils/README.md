@@ -32,3 +32,9 @@ Para fazer o debug de um tópico, e saber o que está sendo transmitido para um 
 ```bash
 ros2 topic echo /topic_name
 ```
+
+## **Enviar para um Tópico**
+Também é possuivel enviar dados para um tópico específico passando como parâmetros a frequencia em hz, o nome e o tipo da mensagem:
+```bash
+ros2 topic pub -r /robot_news example_interfaces/msg/String
+```
