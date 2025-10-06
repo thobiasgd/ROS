@@ -36,3 +36,10 @@ Deve-se ater ao fato que quando criamos o pacote e utilizamos o ```--dependencie
 ```xml
 <depend>example_interfaces</depend>
 ```
+### **CMakeLists**
+Como estamos trabalhando com c++, também deve-se adicionar a dependencia no ```CMakeLists.txt```. Logo abaixo de ```find_package(rclcpp REQUIRED)````adicione :
+```cmake
+find_package(example_interfaces REQUIRED)
+```
+
+
