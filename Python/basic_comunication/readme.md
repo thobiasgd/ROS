@@ -15,6 +15,7 @@ class RobotNewsStationNode(Node):
         msg.data = "Hello" # dado da mensagem
         self.publisher_.publish(msg) # faz o comando de publicar para o tópico "robot_news"
 ```
+![publisher_and_topic](./imagens/logo.png)
 
 Deve-se ater ao fato que quando criamos o pacote e utilizamos o ```--dependencies rclpy```, nós já incluimos no arquivo ```package.xml``` a linha necessária para o pacote em questão, mas como neste exemplo estamos utilizando um novo "pacote" de ```String``` precisamos modificar o arquivo para que o ROS entenda também. Logo abaixo de ```<depend>rclpy</depend>```, adicione:
 ```xml
