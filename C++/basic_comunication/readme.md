@@ -27,15 +27,21 @@ class RobotNewsStationNode : public rclcpp::Node{
 ## **Criando Subscriber**
 Assim como no publisher, a própria classe já possui tudo o que é necessário para a criação dos subscribers.
 ```cpp
-class SmartphoneNode(Node):
-    def __init__(self):
-        super().__init__("smartphone")
-        self.subscriber_ = self.create_subscription(
-            String, "robot_news", self.callback_robot_news, 10) #1- Tipo da msg #2 - nome do tópico #3- função callback #4- queue size
-        self.get_logger().info("Smartphone has been started.")
+class SmartphoneNode : public rclcpp::Node{
+    public:
+        SmartphoneNode() : Node("smartphone"){ 
+           subscriber_ = this->create_subscription<example_interfaces::msg::String>(
+            "robot_news", 10, std::bind(&SmartphoneNode::callbackRobotNews, this, std::placeholders::_1));
+            RCLCPP_INFO(this->get_logger(), "Smartphone has been started.");
+        }
+    private:
+       void callbackRobotNews(const example_interfaces::msg::String::SharedPtr msg){
+        RCLCPP_INFO(this->get_logger(), "%s", msg->data.c_str());
+       }
 
-    def callback_robot_news(self, msg: String): # callback que será chamado toda vez que o subscriber receber a mensagem
-        self.get_logger().info(msg.data) # printa a prórria mensagem recebida
+       rclcpp::Subscription<example_interfaces::msg::String>::SharedPtr subscriber_;
+
+};
 ```
 ## Adicione as dependencias necessárias no ```package.xml```
 Deve-se ater ao fato que quando criamos o pacote e utilizamos o ```--dependencies rclcpp```, nós já incluimos no arquivo ```package.xml``` a linha necessária para o pacote em questão, mas como neste exemplo estamos utilizando um novo "pacote" de ```String``` precisamos modificar o arquivo para que o ROS entenda também. Logo abaixo de ```<depend>rclpy</depend>```, adicione:
