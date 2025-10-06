@@ -34,7 +34,7 @@ ros2 topic echo /topic_name
 ```
 
 ## **Enviar para um Tópico**
-Também é possuivel enviar dados para um tópico específico passando como parâmetros a frequencia em hz, o nome e o tipo da mensagem:
+Também é possuivel enviar dados para um tópico específico passando como parâmetros a frequencia em hz, o nome do tópico, o tipo da mensagem e por fim a mensagem em si (funciona apenas para datatypes simples):
 ```bash
-ros2 topic pub -r /robot_news example_interfaces/msg/String
+ros2 topic pub -r 5 /robot_news example_interfaces/msg/String "{data: 'Hello from terminal'}"
 ```
