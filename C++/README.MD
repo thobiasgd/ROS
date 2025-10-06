@@ -33,7 +33,7 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 ```
-A partir daí, entre o bloco de `find_package(...)` e a ulima linha `ament_package()`, cria-se o comando para definição do executável, cujos parâmetros são: nome do executável - caminho do arquivo .cpp a partir do `CMakeLists.txt`. Em seguida, insere-se a linha que informa ao programa, quais dependências o executável precisa para compilar. E por fim, precisa-se instalar o programa, e para isso, se escreve o bloco do `install()`. O arquivo final fica desta maneira:
+A partir daí, entre o bloco de `find_package(...)` e a última linha `ament_package()`, cria-se o comando para definição do executável, cujos parâmetros são: nome do executável - caminho do arquivo .cpp a partir do `CMakeLists.txt`. Em seguida, insere-se a linha que informa ao programa, quais dependências o executável precisa para compilar. E por fim, precisa-se instalar o programa, e para isso, se escreve o bloco do `install()`. O arquivo final fica desta maneira:
 ```cmake
 cmake_minimum_required(VERSION 3.8)
 project(my_cpp_pkg)
@@ -49,7 +49,7 @@ find_package(rclcpp REQUIRED)
 add_executable(cpp_node src/my_first_node.cpp) # adicionar o executável. #1 nome do executável #2 caminho do arquivo
 ament_target_dependencies(cpp_node rclcpp) # informa as dependências. #1 nome do executavel que foi criado na linha anterior #2 a dependência em si
 
-install(TARGETS_SUPPORTS_SHARED_LIBS
+install(TARGETS
   cpp_node
   DESTINATION lib/${PROJECT_NAME}
 )
