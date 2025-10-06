@@ -3,18 +3,24 @@
 ## **Criando publishers**
 A própria herança de ```Node``` já permite usar o médodo ```self.nome = self.create_publisher(tipoDado, dado)```
 ```cpp
-class RobotNewsStationNode(Node):
-    def __init__(self):
-        super().__init__("robot_news_station")
-        self.robot_name_ = "C3PO"
-        self.publisher_ = self.create_publisher(String, "robot_news", 10) # 1- tipo da mensagem # 2- nome do tópico a ser publicado #3- queue size
-        self.timer_ = self.create_timer(0.5, self.publish_news) # Cria o timer para char a função de publicação
-        self.get_logger().info("Robot News Station has been started.")
+class RobotNewsStationNode : public rclcpp::Node{
+    public:
+        RobotNewsStationNode() : Node("robot_news_station"), robot_name_("R2D2"){ 
+            publisher_ = this->create_publisher<example_interfaces::msg::String>("robot_news", 10); //1- nome do tópico 2- queue size
+            timer_ = this->create_wall_timer(0.5s, std::bind(&RobotNewsStationNode::publishNews, this)); // Criando o callback 1- tempo 2- bind da função que será chamada
+            RCLCPP_INFO(this->get_logger(), "Robot News Station has been started.");
+        }
+    private:
+        void publishNews(){
+            auto msg = example_interfaces::msg::String(); // Criando o objeto que carrega a mensagem
+            msg.data = "Hi, this is " + robot_name_ + " from the robot news station.";
+            publisher_->publish(msg); // chama o método de publicação da classe Node
+        }
 
-    def publish_news(self): # Esta é a própria função que publica através do callback do timer
-        msg = String() # class importada do tipo "String"
-        msg.data = "Hi, this is " + self.robot_name_ +" from the robot news station." # dado da mensagem
-        self.publisher_.publish(msg) # faz o comando de publicar para o tópico "robot_news"
+        std::string robot_name_;
+        rclcpp::Publisher<example_interfaces::msg::String>::SharedPtr publisher_; // prototipando o publisher
+        rclcpp::TimerBase::SharedPtr timer_;
+};
 ```
 ![publisher_and_topic](https://github.com/thobiasgd/ROS/blob/5ba2b96b2e14f9b594920d5f330b5e3970e6aa6d/Python/basic_comunication/publisherTopic.png)
 
