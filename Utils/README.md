@@ -26,3 +26,9 @@ Uma das melhores ferramentas no desenvolvimento ROS é o rqt. uma ferramenta gr�
 ```
 rqt_graph
 ```
+
+## **Escutar um Tópico**
+Para fazer o debug de um tópico, e saber o que está sendo transmitido para um determinado tópico, pode-se usar o seguinte comando (eliminando a necessidade de criar um outro node apenas para saber o que está sendo transmitido):
+```bash
+ros2 topic echo /topic_name
+```
