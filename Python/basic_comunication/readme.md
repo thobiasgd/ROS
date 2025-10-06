@@ -18,6 +18,7 @@ class RobotNewsStationNode(Node):
 ![publisher_and_topic](https://github.com/thobiasgd/ROS/blob/5ba2b96b2e14f9b594920d5f330b5e3970e6aa6d/Python/basic_comunication/publisherTopic.png)
 
 ## **Criando Subscriber**
+Assim como no publisher, a própria classe já possui tudo o que é necessário para a criação dos subscribers.
 ```python
 class SmartphoneNode(Node):
     def __init__(self):
