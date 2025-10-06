@@ -49,7 +49,7 @@ find_package(rclcpp REQUIRED)
 add_executable(cpp_node src/my_first_node.cpp) # adicionar o executável. #1 nome do executável #2 caminho do arquivo
 ament_target_dependencies(cpp_node rclcpp) # informa as dependências. #1 nome do executavel que foi criado na linha anterior #2 a dependência em si
 
-install(TARGET_SUPPORTS_SHARED_LIBS
+install(TARGETS_SUPPORTS_SHARED_LIBS
   cpp_node
   DESTINATION lib/${PROJECT_NAME}
 )
