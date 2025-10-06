@@ -1,7 +1,7 @@
 # **Comunicação entre nodes**
 
 ## **Criando publishers**
-A própria herança de ```Node``` já permite usar o médodo ```self.nome = self.create_publisher(tipoDado, dado)```
+A própria herança de ```Node``` já permite usar o médodo ```publisher_ = this->create_publisher<example_interfaces::msg::String>("robot_news", 10)```
 ```cpp
 class RobotNewsStationNode : public rclcpp::Node{
     public:
@@ -38,7 +38,7 @@ class SmartphoneNode(Node):
         self.get_logger().info(msg.data) # printa a prórria mensagem recebida
 ```
 ## Adicione as dependencias necessárias no ```package.xml```
-Deve-se ater ao fato que quando criamos o pacote e utilizamos o ```--dependencies rclpy```, nós já incluimos no arquivo ```package.xml``` a linha necessária para o pacote em questão, mas como neste exemplo estamos utilizando um novo "pacote" de ```String``` precisamos modificar o arquivo para que o ROS entenda também. Logo abaixo de ```<depend>rclpy</depend>```, adicione:
+Deve-se ater ao fato que quando criamos o pacote e utilizamos o ```--dependencies rclcpp```, nós já incluimos no arquivo ```package.xml``` a linha necessária para o pacote em questão, mas como neste exemplo estamos utilizando um novo "pacote" de ```String``` precisamos modificar o arquivo para que o ROS entenda também. Logo abaixo de ```<depend>rclpy</depend>```, adicione:
 ```xml
 <depend>example_interfaces</depend>
 ```
