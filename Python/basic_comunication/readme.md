@@ -1,6 +1,6 @@
 # **Comunicação entre nodes**
 
-## Criando publishers
+## **Criando publishers**
 A própria herança de ```Node``` já permite usar o médodo ```self.nome = self.create_publisher(tipoDado, dado)```
 ```python
 class RobotNewsStationNode(Node):
@@ -17,6 +17,18 @@ class RobotNewsStationNode(Node):
 ```
 ![publisher_and_topic](https://github.com/thobiasgd/ROS/blob/5ba2b96b2e14f9b594920d5f330b5e3970e6aa6d/Python/basic_comunication/publisherTopic.png)
 
+## **Criando Subscriber**
+```python
+class SmartphoneNode(Node):
+    def __init__(self):
+        super().__init__("smartphone")
+        self.subscriber_ = self.create_subscription(
+            String, "robot_news", self.callback_robot_news, 10) #1- Tipo da msg #2 - nome do tópico #3- função callback #4- queue size
+        self.get_logger().info("Smartphone has been started.")
+
+    def callback_robot_news(self, msg: String): # callback que será chamado toda vez que o subscriber receber a mensagem
+        self.get_logger().info(msg.data) # printa a prórria mensagem recebida
+```
 Deve-se ater ao fato que quando criamos o pacote e utilizamos o ```--dependencies rclpy```, nós já incluimos no arquivo ```package.xml``` a linha necessária para o pacote em questão, mas como neste exemplo estamos utilizando um novo "pacote" de ```String``` precisamos modificar o arquivo para que o ROS entenda também. Logo abaixo de ```<depend>rclpy</depend>```, adicione:
 ```xml
 <depend>example_interfaces</depend>
