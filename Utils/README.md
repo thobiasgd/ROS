@@ -15,3 +15,14 @@ ros2 node info /node_name
 ```bash
 ros2 run pkg_name node_name --ros-args -r __node:=new_node_name # -r = --remap
 ```
+## **Symlink**
+Um comando útil para o desenvolvimento, é usar ```--symlink-install``` que faz com qua quando usamos o ```colcon build```, não precisamos recompilar toda vez que fizermos alguma alteração no arquivo principal. Ele faz isso informando ao ros rodar o próprio arquivo principal, e não o "executável" que fica na pasta ```install```. Recomenda-se usar esta técnica apenas para a fase de desenvolvimento, pois há chances de gerar erros.
+```bash
+colcon build --packages-select my_pkg --symlink-install
+```
+
+## **RQT**
+Uma das melhores ferramentas no desenvolvimento ROS é o rqt. uma ferramenta gráfica usada para ter uma perspectiva gráfica dos nós. Ela mostra quais nós estão inicializados, e como estão interconectados. Para inicializa-la basta usar:
+```
+rqt_graph
+```
