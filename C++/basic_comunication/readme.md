@@ -41,5 +41,9 @@ Como estamos trabalhando com c++, também deve-se adicionar a dependencia no ```
 ```cmake
 find_package(example_interfaces REQUIRED)
 ```
-
+também adicionar o novo executável com a nova dependencia:
+```cmake
+add_executable(robot_news_station src/robot_news_station.cpp) 
+ament_target_dependencies(robot_news_station rclcpp example_interfaces) 
+```
 
