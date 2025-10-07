@@ -1,7 +1,27 @@
 # **Comunicação com Tópicos**
 
-## **Criando o Server**
-Tópicos são uma estrutura de comunicação entre client e server. O Client envia uma request, o server processa a mensagem, e envia uma resposta. Vale ressaltar que os tópicos usam as interfaces como estrutura de dados, portanto recebem um "tipo" de mensagem pré determinada, e enviar um "tipo" de mensagem pré determinada também. Na criação do service, recomenda-se nomea-lo sempre começando com um "verbo", pois normalmente um server sempre é requisitado para realizar uma "ação".
+Os services (serviços) são um dos três principais mecanismos de comunicação no ROS2, junto com tópicos e ações. Eles seguem um padrão de requisição–resposta:
+um cliente (client) envia uma requisição (request), o servidor (server) processa e retorna uma resposta (response).
+
+Os serviços são úteis para tarefas pontuais que têm início, meio e fim definidos, como “somar dois números”, “mover o robô até um ponto” ou “salvar um arquivo”.
+
+## **Estrutura de um server**
+Cada service é definido por uma interface (no pacote example_interfaces, por exemplo).
+Essa interface define dois tipos de mensagens:
+
+- Request: mensagem enviada do cliente para o servidor.
+- Response: mensagem retornada do servidor para o cliente.
+
+No caso do AddTwoInts, temos:
+´´´´bash
+int64 a
+int64 b
+---
+int64 sum
+´´´
+## **Criando um server**
+O servidor é o nó responsável por receber requisições e retornar respostas.
+A função callback define o que acontece quando uma requisição chega.
 ```python
 class AddTwoIntsServerNode(Node):
     def __init__(self):
@@ -14,6 +34,8 @@ class AddTwoIntsServerNode(Node):
         return response # não esquecer de colocar um return
 ```
 ## **Criando o Client**
+O cliente é o nó que envia uma requisição ao servidor e espera pela resposta.
+Antes de enviar, ele precisa garantir que o serviço já está ativo.
 ```python
 class AddTwoIntsClientNode(Node):
     def __init__(self):
