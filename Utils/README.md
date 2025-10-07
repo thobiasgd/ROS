@@ -44,3 +44,8 @@ Assim como os nós,  também é possível renomear um tópico com os argumentos 
 ```bash
 ros2 run pkg_name executable_name --ros-args -r old_topic_name:=new_topic_name
 ```
+## **Enviando um request para um topic manualmente**
+Normalmente, precisa-se criar um cliente para um server, mas para fins de testes, pode ser útil enviar estruturas de requests para um server para testes.
+```bash
+ros2 service call /service_name service_interface
+```
