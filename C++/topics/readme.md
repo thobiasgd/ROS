@@ -13,7 +13,7 @@ Essa interface define dois tipos de mensagens:
 - Response: mensagem retornada do servidor para o cliente.
 
 No caso do AddTwoInts, temos:
-```bash
+```cpp
 int64 a
 int64 b
 ---
@@ -22,7 +22,7 @@ int64 sum
 ## **Criando um server**
 O servidor é o nó responsável por receber requisições e retornar respostas.
 A função callback define o que acontece quando uma requisição chega.
-```python
+```cpp
 class AddTwoIntsServerNode(Node):
     def __init__(self):
         super().__init__("add_two_ints_server")
@@ -36,7 +36,7 @@ class AddTwoIntsServerNode(Node):
 ## **Criando o Client**
 O cliente é o nó que envia uma requisição ao servidor e espera pela resposta.
 Antes de enviar, ele precisa garantir que o serviço já está ativo.
-```python
+```cpp
 # Define a classe do nó cliente, herdando de Node
 class AddTwoIntsClientNode(Node):
     def __init__(self):
@@ -71,7 +71,7 @@ class AddTwoIntsClientNode(Node):
 
 ```
 ### **Chamando a função do client**
-```python
+```cpp
 def main(args = None):
     rclpy.init(args = args) 
     node = AddTwoIntsClientNode()
