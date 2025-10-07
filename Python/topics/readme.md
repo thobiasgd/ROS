@@ -35,3 +35,15 @@ class AddTwoIntsClientNode(Node):
         response = future.result()
         self.get_logger().info("Got response: " + str(response.sum))
 ```
+### **Chamando a função do client**
+```python
+def main(args = None):
+    rclpy.init(args = args) 
+    node = AddTwoIntsClientNode()
+    node.call_add_two_ints(2, 7)
+    rclpy.spin(node) 
+    rclpy.shutdown() 
+
+if __name__ == '__main__':
+    main()
+```
