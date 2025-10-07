@@ -47,5 +47,13 @@ ros2 run pkg_name executable_name --ros-args -r old_topic_name:=new_topic_name
 ## **Enviando um request para um topic manualmente**
 Normalmente, precisa-se criar um cliente para um server, mas para fins de testes, pode ser útil enviar estruturas de requests para um server para testes.
 ```bash
-ros2 service call /service_name service_interface
+ros2 service call /service_name service_interface data
+```
+Exemplo:
+```bash
+ros2 service call /add_two_ints example_interfaces/srv/AddTwoInts "{a: 3, b: 7}"
+requester: making request: example_interfaces.srv.AddTwoInts_Request(a=3, b=7)
+
+response:
+example_interfaces.srv.AddTwoInts_Response(sum=10)
 ```
