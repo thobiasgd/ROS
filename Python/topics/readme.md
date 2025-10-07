@@ -37,25 +37,38 @@ class AddTwoIntsServerNode(Node):
 O cliente é o nó que envia uma requisição ao servidor e espera pela resposta.
 Antes de enviar, ele precisa garantir que o serviço já está ativo.
 ```python
+# Define a classe do nó cliente, herdando de Node
 class AddTwoIntsClientNode(Node):
     def __init__(self):
+        # Inicializa o nó com o nome "add_two_ints_client"
         super().__init__("add_two_ints_client")
+        # Cria um cliente para o serviço "add_two_ints", do tipo AddTwoInts
         self.client_ = self.create_client(AddTwoInts, "add_two_ints")
 
+    # Função que envia a requisição ao servidor
     def call_add_two_ints(self, a, b):
-        while not self.client_.wait_for_service(1.0):
+        # Aguarda até que o serviço esteja disponível (verifica a cada 1 segundo)
+        while not self.client_.wait_for_service(timeout_sec=1.0):
             self.get_logger().warn("Waiting for Add Two Ints server...")
 
+        # Cria o objeto de requisição (mensagem de entrada)
         request = AddTwoInts.Request()
+        # Define os valores dos parâmetros da requisição
         request.a = a
         request.b = b
 
+        # Envia a requisição de forma assíncrona (não bloqueia a execução)
         future = self.client_.call_async(request)
+        # Define a função de callback que será chamada quando a resposta chegar
         future.add_done_callback(self.callback_call_add_two_ints)
 
+    # Função de callback chamada quando o servidor responde
     def callback_call_add_two_ints(self, future):
+        # Obtém a resposta do futuro (objeto retornado pelo servidor)
         response = future.result()
+        # Exibe no terminal o valor retornado (soma)
         self.get_logger().info("Got response: " + str(response.sum))
+
 ```
 ### **Chamando a função do client**
 ```python
