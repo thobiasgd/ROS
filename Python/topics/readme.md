@@ -13,12 +13,12 @@ Essa interface define dois tipos de mensagens:
 - Response: mensagem retornada do servidor para o cliente.
 
 No caso do AddTwoInts, temos:
-´´´´bash
+```bash
 int64 a
 int64 b
 ---
 int64 sum
-´´´
+```
 ## **Criando um server**
 O servidor é o nó responsável por receber requisições e retornar respostas.
 A função callback define o que acontece quando uma requisição chega.
