@@ -75,3 +75,15 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
 ament_export_dependencies(rosidl_default_runtime)
 ```
+Após definir as dependencias, cria-se uma pasta para a nova interface, e em seguida o arquivo que por sua vez deve começar com uma letra maiuscula e também sem nenhum tipo de caracter especial como "_" ou "-".
+```bash
+mkdir msg
+cd msg
+touch HardwareStatus.msg
+```
+Para criar a nova estrutura da interface, pode-se usar as estruturas de dados primitivas (ex: float, int etc...) ou basear em uma interface já construida (Setbool, Vector, etc...). Abrindo o arquivo .msg podemos construir da seguinte forma:
+```msg
+float64 temperature
+bool are_motors_ready
+string debug_message    
+```
