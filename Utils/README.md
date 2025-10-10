@@ -87,6 +87,13 @@ float64 temperature
 bool are_motors_ready
 string debug_message    
 ```
+Para services, é semelhante:
+```msg
+float64 length
+float64 width
+---
+float64 area
+```
 Após esta etapa, deve-se atualizar o ```CMakeLists.txt``` na linha ```rosidl_generate_interfaces```:
 ```cmake
 rosidl_generate_interfaces(${PROJECT_NAME}
