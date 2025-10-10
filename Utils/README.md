@@ -57,3 +57,11 @@ requester: making request: example_interfaces.srv.AddTwoInts_Request(a=3, b=7)
 response:
 example_interfaces.srv.AddTwoInts_Response(sum=10)
 ```
+
+## **Criando Interfaces**
+Recomenda-se criar um novo pacote onde haverá todas as interfaces customizadas, para evitar que inconviniencias de dependências no futuro. O primeiro passao para criar a interface customizada, é ir no diretório do pacote e adicionar as seguintes linhas no arquivo ```package.xml```:
+```xml
+<buildtool_type>rosidl_default_generators</buildtool_type>
+<exec_depend>rosidl_default_runtime</exec_depend>
+<member_of_group>rosidl_interface_packages</member_of_group>
+```
