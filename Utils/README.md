@@ -65,3 +65,13 @@ Recomenda-se criar um novo pacote onde haverá todas as interfaces customizadas,
 <exec_depend>rosidl_default_runtime</exec_depend>
 <member_of_group>rosidl_interface_packages</member_of_group>
 ```
+Após isto, deve-se também alterar o ```CMakeLists.txt```:
+```cmake
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "your custom interfaces will be here"
+  "one per line"
+  "no comma for separating lines"
+)
+
+ament_export_dependencies(rosidl_default_runtime)
+```
