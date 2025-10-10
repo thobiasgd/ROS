@@ -61,7 +61,7 @@ example_interfaces.srv.AddTwoInts_Response(sum=10)
 ## **Criando Interfaces**
 Recomenda-se criar um novo pacote onde haverá todas as interfaces customizadas, para evitar que inconviniencias de dependências no futuro. O primeiro passao para criar a interface customizada, é ir no diretório do pacote e adicionar as seguintes linhas no arquivo ```package.xml```:
 ```xml
-<buildtool_type>rosidl_default_generators</buildtool_type>
+<build_depend>rosidl_default_generators</build_depend>
 <exec_depend>rosidl_default_runtime</exec_depend>
 <member_of_group>rosidl_interface_packages</member_of_group>
 ```
@@ -86,4 +86,14 @@ Para criar a nova estrutura da interface, pode-se usar as estruturas de dados pr
 float64 temperature
 bool are_motors_ready
 string debug_message    
+```
+Após esta etapa, deve-se atualizar o ```CMakeLists.txt``` na linha ```rosidl_generate_interfaces```:
+```cmake
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/HardwareStatus.msg"
+)
+```
+Pode-se vizualizar a nova interface depois de buildar com:
+```bash
+ros2 interface show my_robot_interfaces/msg/HardwareStatus
 ```
